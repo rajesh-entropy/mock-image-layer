@@ -31,9 +31,11 @@ async def list_images(request: Request, name=None, min_size=None, page=1, limit=
     list_images_schema = ListImagesSchema(name=name, min_size=min_size, page=page, limit=limit)
     return ImageListUseCase(user_id=get_user_id_from_headers(request), schema=list_images_schema).execute()
 
+
 @image_router_v1.get(path="/images/{image_id}", response_model=Response)
 async def get_image(request: Request, image_id: str):
     return ImageGetUseCase(user_id=get_user_id_from_headers(request), image_id=image_id).execute()
+
 
 @image_router_v1.delete(path="/images/{image_id}", response_model=Response)
 async def delete_image(request: Request, image_id: str):

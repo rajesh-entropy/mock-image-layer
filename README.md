@@ -1,3 +1,15 @@
+### Insta Mock Image Layer
+This project is created using fastapi. <br>
+It contains the CRUD APIs for Instagram images.
+
+## Swagger URL
+http://localhost:3000/docs
+
+## To run the project
+```bash
+python src/main.py
+```
+
 ### Testing
 ### set env variables
 ```bash

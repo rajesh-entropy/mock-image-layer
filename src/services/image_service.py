@@ -73,6 +73,12 @@ class ImageService:
             return False, "Error while deleting image"
 
     def get_image(self, image_id: str, user_id: str) -> Optional[InstaImageModel]:
+        """
+        Get image by image_id and user_id
+        :param image_id:
+        :param user_id:
+        :return:
+        """
         try:
             image_model = self.image_model.get(hash_key=user_id, range_key=image_id)
             if image_model.is_deleted:
@@ -91,7 +97,15 @@ class ImageService:
             limit: int = 10
     ) -> List[
         InstaImageModel]:
-
+        """
+        List images by hash_key and range_key_condition
+        :param hash_key:
+        :param range_key_condition:
+        :param filter_condition:
+        :param page:
+        :param limit:
+        :return:
+        """
         try:
             images = self.image_model.query(
                 hash_key=hash_key,
