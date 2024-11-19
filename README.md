@@ -1,4 +1,12 @@
 ### Testing
+### set env variables
+```bash
+export AWS_PROFILE=localstack
+export LOCALSTACK_URL=http://localhost:4566/
+export aws_access_key_id=test
+export aws_secret_access_key=test
+```
+
 Run a fresh instance of LocalStack and initialize the resources required for the project.
 ```bash
 docker compose up -d

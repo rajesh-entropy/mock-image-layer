@@ -37,7 +37,7 @@ class S3Service:
         """
         try:
             response = self.s3_client.generate_presigned_url(
-                request_type=request_type,
+                request_type,
                 Params={"Bucket": bucket_name, "Key": key},
                 ExpiresIn=expiration,
             )
