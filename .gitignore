@@ -152,4 +152,4 @@ assets/*.bkp
 
 # Pytest
 coverage-reports
-tests/localstack/volume/
+tests/volume/
