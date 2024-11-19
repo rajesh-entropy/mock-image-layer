@@ -13,7 +13,7 @@ class ImageGetUseCase:
         self.s3_service = S3Service()
 
     def execute(self):
-        image_model = self.image_service.get_image(self.user_id, self.image_id)
+        image_model = self.image_service.get_image(image_id=self.image_id, user_id=self.user_id)
         if not image_model:
             return Response(status_code=status.HTTP_404_NOT_FOUND, success=False, message="Image not found")
         presign_url =  self.s3_service.get_presign_url(key=image_model.image_s3_key)

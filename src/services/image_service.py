@@ -41,10 +41,11 @@ class ImageService:
         image_s3_key = self.get_image_s3_key(user_id, schema.file_name)
         image_model = self.image_model(
             user_id=user_id,
-            image_id=schema.file_name,
+            image_id=self.get_unique_image_id(),
             image_s3_key=image_s3_key,
             name=str(schema.file_name),
             size=schema.file_size,
+            created_by=user_id
         )
         image_model.save()
         return self.s3_service.get_presign_url(key=image_s3_key, request_type=S3Service.PUT_OBJECT)
