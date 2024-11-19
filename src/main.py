@@ -7,7 +7,9 @@ from src.config import Configuration
 
 insta_app = FastAPI(
     title="Insta Image REST API",
-    version="1.0.0"
+    version="1.0.0",
+    docs_url="/docs",
+    openapi_url="/openapi.json"
 )
 
 # Add routers

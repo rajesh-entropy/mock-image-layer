@@ -6,7 +6,7 @@ docker compose up -d
 
 ### Make the localstack-entrypoint.sh script executable
 ```bash
- chmod +x localstack-entrypoint.sh
+ chmod +x localstack_entrypoint.sh
 ```
 
 ### Run the localstack-entrypoint.sh script to set up LocalStack environment variables

@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from typing import Optional
 
 
 class ImageUploadSchema(BaseModel):
@@ -9,6 +10,6 @@ class ImageUploadSchema(BaseModel):
 class ListImagesSchema(BaseModel):
     page: int = 1
     limit: int = 10
-    name: str = None
-    min_size: float = None
+    name: Optional[str] = None
+    min_size: Optional[int] = None
 

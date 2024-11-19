@@ -16,7 +16,8 @@ def get_user_id_from_headers(request: Request):
     # TODO keep this method in a common place
     # reading user id from headers
     context = request.state.context if hasattr(request.state, "context") else {}
-    return context["user_id"]
+    # TODO raise the error if user_id is not present
+    return context.get("user_id", "default_user_id")
 
 
 @image_router_v1.post(path="/images", response_model=Response)
@@ -26,8 +27,8 @@ async def create_image(request: Request, body: ImageUploadSchema):
 
 
 @image_router_v1.get(path="/images", response_model=Response)
-async def list_images(request: Request, name=None, size=None, page=1, limit=10):
-    list_images_schema = ListImagesSchema(name=name, size=size, page=page, limit=limit)
+async def list_images(request: Request, name=None, min_size=None, page=1, limit=10):
+    list_images_schema = ListImagesSchema(name=name, min_size=min_size, page=page, limit=limit)
     return ImageListUseCase(user_id=get_user_id_from_headers(request), schema=list_images_schema).execute()
 
 @image_router_v1.get(path="/images/{image_id}", response_model=Response)

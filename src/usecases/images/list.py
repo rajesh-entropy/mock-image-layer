@@ -16,7 +16,7 @@ class ImageListUseCase:
     def execute(self):
         filter_conditions = None
         if self.schema.name:
-            filter_conditions = InstaImageModel.name.contains(self.schema.name)
+            filter_conditions = InstaImageModel.name.contains(str(self.schema.name))
         if self.schema.min_size:
             filter_conditions &= InstaImageModel.size.gte(self.schema.min_size)
 
