@@ -59,6 +59,8 @@ class ImageService:
         """
         try:
             image_model = self.image_model.get(hash_key=user_id, range_key=image_id)
+            if image_model.is_deleted:
+                return False, "Image not found"
             image_model.update(actions=[InstaImageModel.is_deleted.set(True)])
             # self.s3_service.delete_object(image_model.image_s3_key)
             logger.info(f"Image {image_model.image_s3_key} soft deleted successfully")
@@ -73,6 +75,8 @@ class ImageService:
     def get_image(self, image_id: str, user_id: str) -> Optional[InstaImageModel]:
         try:
             image_model = self.image_model.get(hash_key=user_id, range_key=image_id)
+            if image_model.is_deleted:
+                return None
             return image_model
         except DoesNotExist:
             logger.warning(f"Image not found with image_id: {image_id}, user_id: {user_id}")

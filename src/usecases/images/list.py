@@ -18,7 +18,7 @@ class ImageListUseCase:
         if self.schema.name:
             filter_conditions = InstaImageModel.name.contains(str(self.schema.name))
         if self.schema.min_size:
-            filter_conditions &= InstaImageModel.size.gte(self.schema.min_size)
+            filter_conditions &= InstaImageModel.size >= self.schema.min_size
 
         images = self.image_service.list_images(
             hash_key=self.user_id,
